@@ -1,0 +1,76 @@
+import kivy
+kivy.require('1.0.7')
+
+from kivy.app import App
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.slider import Slider
+from kivy.graphics import Color, Bezier, Line
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.graphics import Rectangle, Color
+import arabic_reshaper
+from bidi.algorithm import get_display
+from kivy.uix.image import Image
+
+class amlakApp(App):
+    def build(self):
+        box = FloatLayout()
+        imgsite = Image(source="",pos_hint={ "center_x" : .570, "center_y": .90}, size_hint=(0.25,0.25),color = (25/255,120/255,165/255))
+        box.add_widget(imgsite) 
+        imggmail = Image(source="",pos_hint={ "center_x" : .33 , "center_y": .37}, size_hint=(0.0850,0.0850))
+        box.add_widget(imggmail)
+        imginfo = Image(source="",pos_hint={ "center_x" : .33 , "center_y": .54}, size_hint=(0.0800,0.0800))
+        box.add_widget(imginfo)
+        imginsta = Image(source="",pos_hint={ "center_x" : .33 , "center_y": .275}, size_hint=(0.2150,0.2150))
+        box.add_widget(imginsta)
+        imgsite = Image(source="",pos_hint={ "center_x" : .345 , "center_y": .47}, size_hint=(0.150,0.150))
+        box.add_widget(imgsite)
+        imgnumb = Image(source="",pos_hint={ "center_x" : .428 , "center_y": .10}, size_hint=(0.0700,0.0700))
+        box.add_widget(imgnumb)
+        boo = BoxLayout(size_hint=(None,None),size=box.size)
+        with boo.canvas:
+            Color(243/255, 202/255, 32/255)
+        box.add_widget(boo)
+        reshaped_text = arabic_reshaper.reshape("اطلاعات ما")
+        bidi_text = get_display(reshaped_text)
+        
+        def on_focus(instance, value):
+            instance.text = ""
+        a = Label(text=bidi_text,font_name='',size_hint=(0.3 ,0.2),pos_hint={ "center_x" : .52 , "center_y": .70}, font_size="45sp",color = (1,1,1,1))
+        box.add_widget(a)
+        reshaped_text = arabic_reshaper.reshape("درباره ما")
+        bidi_text = get_display(reshaped_text)
+        b = Button(text=bidi_text,font_name='',size_hint=(0.3, 0.07),pos_hint={ "center_x" : .535 , "center_y": .545}, font_size="33dp",background_color =(31/255,194/255,84/255),color = (1,1,1,1))
+        box.add_widget(b)
+        reshaped_text = arabic_reshaper.reshape("سايت ما")
+        bidi_text = get_display(reshaped_text)
+        c = Button(text=bidi_text,font_name='',size_hint=(0.3, 0.07),pos_hint={ "center_x" : .535 , "center_y": .460}, font_size="33dp",background_color =(31/255,194/255,84/255),color = (1,1,1,1))
+        box.add_widget(c)
+        reshaped_text = arabic_reshaper.reshape("ايميل ما")
+        bidi_text = get_display(reshaped_text)
+        d = Button(text=bidi_text,font_name='',size_hint=(0.3, 0.07),pos_hint={ "center_x" : .535 , "center_y": .37}, font_size="33dp",background_color =(31/255,194/255,84/255),color = (1,1,1,1))
+        box.add_widget(d)
+        reshaped_text = arabic_reshaper.reshape("صفحه مجازي ما")
+        bidi_text = get_display(reshaped_text)
+        e = Button(text=bidi_text,font_name='',size_hint=(0.3, 0.07),pos_hint={ "center_x" : .535 , "center_y": .27} ,font_size="33dp",background_color =(31/255,194/255,84/255),color = (1,1,1,1))
+        box.add_widget(e)
+        reshaped_text = arabic_reshaper.reshape("در صورت نياز داشتن به راهنمايي با اين شماره تماس بگيريد")
+        bidi_text = get_display(reshaped_text)
+        f = Label(text=bidi_text,font_name='',size_hint=(0.3 ,0.2),pos_hint={ "center_x" : .502 , "center_y": .20}, font_size="20dp")
+        box.add_widget(f)
+        reshaped_text = arabic_reshaper.reshape("09135971059")
+        bidi_text = get_display(reshaped_text)
+        g = Label(text=bidi_text,size_hint=(0.3 ,0.2),pos_hint={ "center_x" : .52 , "center_y": .100}, font_size="20dp")
+        box.add_widget(g)
+        return box
+
+
+
+    
+
+if __name__ == '__main__':
+   amlakApp().run()
+
+
